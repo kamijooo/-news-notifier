@@ -2,7 +2,7 @@ import puppeteer from "puppeteer";
 import axios from "axios";
 import fs from "fs";
 
-const SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/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";
+const SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/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";
 const KEYWORDS = ["モバイルオーダー", "ダイニー", "funfo", "スマホ決済"];
 const SENT_FILE = "./sent_articles.json";
 const GITHUB_EVENT_NAME = process.env.GITHUB_EVENT_NAME || "";

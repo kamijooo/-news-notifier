@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/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";
+const SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/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";
 
 const payload = {
   text: "✅ Slack通知テスト（Webhook再発行済み）"

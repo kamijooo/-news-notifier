@@ -6,9 +6,14 @@ const SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/T0142P1QD50/B08UF84J
 const KEYWORDS = ["モバイルオーダー", "ダイニー", "funfo", "スマホ決済"];
 
 const SENT_FILE = "./sent_articles.json";
-const sentLinks = fs.existsSync(SENT_FILE) ? new Set(JSON.parse(fs.readFileSync(SENT_FILE))) : new Set();
+const sentLinks = fs.existsSync(SENT_FILE)
+  ? new Set(JSON.parse(fs.readFileSync(SENT_FILE)))
+  : new Set();
 
-const browser = await puppeteer.launch({ headless: "new" });
+const browser = await puppeteer.launch({
+  headless: "new",
+  args: ["--no-sandbox", "--disable-setuid-sandbox"]
+});
 const page = await browser.newPage();
 await page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)");
 
@@ -47,11 +52,7 @@ for (const item of allResults) {
   if (sentLinks.has(item.link)) continue;
 
   const payload = {
-    text: `📰 *ニュース通知*
-
-・*検索語:* ${item.keyword}
-・*タイトル:* ${item.title}
-・*リンク:* ${item.link}`
+    text: `📰 *ニュース通知*\n\n・*検索語:* ${item.keyword}\n・*タイトル:* ${item.title}\n・*リンク:* ${item.link}`
   };
 
   console.log("送信先:", SLACK_WEBHOOK_URL);
